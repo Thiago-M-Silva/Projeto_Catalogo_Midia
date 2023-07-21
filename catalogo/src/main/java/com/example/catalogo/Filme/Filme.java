@@ -1,9 +1,16 @@
-public class Filme extends midia{
+package com.example.catalogo.Filme;
+
+import com.example.catalogo.Midia.midia;
+
+public class Filme extends midia {
     private int duracao;
     
-    Filme(String nome, String autor, String estudio, int duracao){
+    public Filme(String nome, String autor, String estudio, int duracao){
         super(nome, autor, estudio);
         this.duracao = duracao;
+    }
+
+    public Filme(FilmeRequestDTO data) {
     }
 
     public int getDuracao() {

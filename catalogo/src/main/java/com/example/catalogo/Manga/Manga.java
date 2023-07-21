@@ -1,12 +1,20 @@
-public class Manga extends midia{
+package com.example.catalogo.Manga;
+
+import com.example.catalogo.Midia.midia;
+
+public class Manga extends midia {
     private int qtdCaps;
     private String status; //lancamento ou encerrado
     private String statusLido; //se o usuario esta lendo ou ñ ou se pretende ler
+    private String nacionalidade; //manga funcionara para qualquer quadrinho
 
-    Manga(String nome, String autor, String estudio, int qtdCaps, String status){
+    public Manga(String nome, String autor, String estudio, int qtdCaps, String status){
         super(nome, autor, estudio);
         this.status = status;
         this.qtdCaps = qtdCaps;
+    }
+
+    public Manga(MangaRequestDTO data) {
     }
 
     public int getQtdCaps() {
@@ -31,5 +39,13 @@ public class Manga extends midia{
 
     public void setStatusLido(String statusLido) {
         this.statusLido = statusLido;
+    }
+
+    public String getNacionalidade() {
+        return nacionalidade;
+    }
+
+    public void setNacionalidade(String nacionalidade) {
+        this.nacionalidade = nacionalidade;
     }
 }

@@ -1,23 +1,64 @@
+package com.example.catalogo.Midia;
+
+import com.example.catalogo.Elenco;
+import com.example.catalogo.Personagens;
+import jakarta.persistence.*;
+
 import java.sql.Date;
-public abstract class midia {
+import java.util.List;
+
+@Table(name= "midia")
+@Entity(name="midia")
+public class midia {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String nome;
     private String descrição;
+
     private String autor;
     private String estudio; //estudio proprietário ou editora
     private String status;
     private String disponibilidade; //onde a midia pode ser econtrada
     private String tipo; //anime, serie, filme...
-    private Date mesAno;
+    private Date mesAno; //data lancamento
     private int temps;
     private int maxEps;
     private int duracaoEP;
     private String statusVisto; //se o usuario esta assistindo ou ñ ou se pretende ver
     private Elenco elenco; //lista de dubladores
+    private List<Personagens> personagens;
 
-    midia(String nome, String autor, String estudio){
+    public midia(String nome, String autor, String estudio){
         this.nome = nome;
         this.autor = autor;
         this.estudio = estudio;
+    }
+
+    public midia(MidiaRequestDTO data){
+        this.nome = data.Nome();
+        this.tipo = data.tipo();
+    }
+
+    public midia() {
+
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Personagens> getPersonagens() {
+        return personagens;
+    }
+
+    public void setPersonagens(List<Personagens> personagens) {
+        this.personagens = personagens;
     }
 
     public int getTemps() {

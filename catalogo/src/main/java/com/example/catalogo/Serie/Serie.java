@@ -1,7 +1,15 @@
-public class Anime extends midia{
+package com.example.catalogo.Serie;
 
-    Anime(String nome, String autor, String estudio, int temps, int maxEps, int duracaoEP){
+import com.example.catalogo.Elenco;
+import com.example.catalogo.Midia.midia;
+
+public class Serie extends midia {
+
+    public Serie(String nome, String autor, String estudio, int temps, int maxEps, int duracaoEP){
         super(nome, autor, estudio);
+    }
+
+    public Serie(SerieRequestDTO data) {
     }
 
     public int gettemps() {

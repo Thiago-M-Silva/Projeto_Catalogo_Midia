@@ -1,10 +1,12 @@
+package com.example.catalogo;
+
 import java.sql.Date;
 import java.util.List;
 
 public class Elenco {
     private String nome;
     private String funcao;
-    private List<String> personagem;
+    private List<Personagens> personagem;
     private int idade;
     private Date anoNasc;
 
@@ -26,11 +28,11 @@ public class Elenco {
         this.funcao = funcao;
     }
 
-    public List<String> getPersonagem() {
+    public List<Personagens> getPersonagem() {
         return personagem;
     }
 
-    public void setPersonagem(List<String> personagem) {
+    public void setPersonagem(List<Personagens> personagem) {
         this.personagem = personagem;
     }
 

@@ -1,7 +1,20 @@
-public class Serie extends midia{
+package com.example.catalogo.Anime;
 
-    Serie(String nome, String autor, String estudio, int temps, int maxEps, int duracaoEP){
+import com.example.catalogo.Elenco;
+import com.example.catalogo.Midia.midia;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Table(name = "anime")
+@Entity(name = "anime")
+public class Anime extends midia {
+
+    public Anime(String nome, String autor, String estudio, int temps, int maxEps, int duracaoEP){
         super(nome, autor, estudio);
+    }
+
+    public Anime(AnimeRequestDTO data) {
+        super();
     }
 
     public int gettemps() {

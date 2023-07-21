@@ -1,13 +1,21 @@
-public class Novela extends midia{
+package com.example.catalogo.Novela;
+
+import com.example.catalogo.Elenco;
+import com.example.catalogo.Midia.midia;
+
+public class Novela extends midia {
     private int maxEps;
     private int duracaoEP;
     private String statusVisto; //se o usuario esta assistindo ou ñ ou se pretende ver
     private Elenco elenco; //lista de dubladores
 
-    Novela(String nome, String autor, String estudio, int maxEps, int duracaoEP){
+    public Novela(String nome, String autor, String estudio, int maxEps, int duracaoEP){
         super(nome, autor, estudio);
         this.maxEps = maxEps;
         this.duracaoEP = duracaoEP;
+    }
+
+    public Novela(NovelaRequestDTO data) {
     }
 
     public int getMaxEps() {
