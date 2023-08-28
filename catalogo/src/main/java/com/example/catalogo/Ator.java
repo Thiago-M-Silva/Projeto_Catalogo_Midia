@@ -1,16 +1,26 @@
 package com.example.catalogo;
 
+import jakarta.persistence.*;
+import org.hibernate.annotations.Type;
+
 import java.sql.Date;
 import java.util.List;
 
-public class Elenco {
+@Entity
+@Table(name = "Ator")
+public class Ator {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private String nome;
-    private String funcao;
+    @ManyToMany
+    @JoinTable(name = "Ator_Personagens", joinColumns = @JoinColumn(name = "ator_id"),
+            inverseJoinColumns = @JoinColumn(name = "personagens_id"))
     private List<Personagens> personagem;
     private int idade;
     private Date anoNasc;
 
-    Elenco(){}
+    Ator(){}
 
     public String getNome() {
         return nome;
@@ -18,14 +28,6 @@ public class Elenco {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getFuncao() {
-        return funcao;
-    }
-
-    public void setFuncao(String funcao) {
-        this.funcao = funcao;
     }
 
     public List<Personagens> getPersonagem() {
@@ -52,5 +54,11 @@ public class Elenco {
         this.anoNasc = anoNasc;
     }
 
-    
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }

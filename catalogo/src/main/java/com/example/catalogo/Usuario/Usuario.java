@@ -6,26 +6,20 @@ import com.example.catalogo.Anime.Anime;
 import com.example.catalogo.Filme.Filme;
 import com.example.catalogo.Livro.Livro;
 import com.example.catalogo.Manga.Manga;
-import com.example.catalogo.Midia.midia;
+
 import com.example.catalogo.Novela.Novela;
 import com.example.catalogo.Serie.Serie;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "usuario")
 public class Usuario {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY);
+    @Id
     private Long id;
-
-    @Column(name = "nome")
     private String nome;
-
     private Anime anime;
     private Filme filme;
     private Livro livro;
@@ -110,32 +104,6 @@ public class Usuario {
         this.tipo = tipo;
     }
 
-    public List<midia> listaMidia(String tipo){
-        switch (tipo.toUpperCase()){
-            case "A":
-
-            break;
-            case "F":
-
-            break;
-            case "L":
-
-            break;
-            case "M":
-
-            break;
-            case "N":
-
-            break;
-            case "S":
-
-            break;
-            default :
-                System.out.println("Entrada invalida - ListaMIdia");
-        }
-
-        return null;
-    }
 
     public void adicionarMidia(String tipo){
 

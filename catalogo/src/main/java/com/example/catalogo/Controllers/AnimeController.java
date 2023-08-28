@@ -15,17 +15,18 @@ public class AnimeController {
 
     @Autowired
     private AnimeRepository AnimeRep;
+
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
+    @RequestMapping("/animes")
     public List<AnimeResponseDTO> getAll(){
-        //No caso, provavelmente vai ter que modificar essa func
-        //para cada tipo de midia do proj
         List<AnimeResponseDTO> AnimeList = AnimeRep.findAll().stream().map(AnimeResponseDTO::new).toList();
         return AnimeList;
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping
+    @RequestMapping("/animesSave")
     public void saveAnime(@RequestBody AnimeRequestDTO data){
         Anime AnimeData = new Anime(data);
         AnimeRep.save(AnimeData);

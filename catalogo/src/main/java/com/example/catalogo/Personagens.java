@@ -6,15 +6,38 @@ import com.example.catalogo.Livro.Livro;
 import com.example.catalogo.Manga.Manga;
 import com.example.catalogo.Novela.Novela;
 import com.example.catalogo.Serie.Serie;
+import jakarta.persistence.*;
 
+import java.util.List;
+
+
+@Entity
+@Table(name = "Personagens")
 public class Personagens {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private String nome;
+    @ManyToOne
+    @JoinColumn(name = "id_anime")
     private Anime anime;
+    @ManyToOne
+    @JoinColumn(name = "id_filme")
     private Filme filme;
+    @ManyToOne
+    @JoinColumn(name = "id_livro")
     private Livro livro;
+    @ManyToOne
+    @JoinColumn(name = "id_manga")
     private Manga manga;
+    @ManyToOne
+    @JoinColumn(name = "id_novela")
     private Novela novela;
+    @ManyToOne
+    @JoinColumn(name = "id_serie")
     private Serie serie;
+    @ManyToMany(mappedBy = "personagem")
+    private List<Ator> ator;
 
     public Personagens(String nome) {
         this.nome = nome;
@@ -76,5 +99,20 @@ public class Personagens {
         this.serie = serie;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public List<Ator> getAtor() {
+        return ator;
+    }
+
+    public void setAtor(List<Ator> ator) {
+        this.ator = ator;
+    }
 
 }

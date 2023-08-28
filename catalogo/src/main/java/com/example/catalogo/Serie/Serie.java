@@ -1,60 +1,178 @@
 package com.example.catalogo.Serie;
 
-import com.example.catalogo.Elenco;
-import com.example.catalogo.Midia.midia;
 
-public class Serie extends midia {
+import com.example.catalogo.Personagens;
+import jakarta.persistence.*;
 
-    public Serie(String nome, String autor, String estudio, int temps, int maxEps, int duracaoEP){
-        super(nome, autor, estudio);
+import java.sql.Date;
+import java.util.List;
+
+@Entity
+@Table(name = "Serie")
+public class Serie {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String nome;
+    private String descricao;
+    private String autor;
+    private String estudio; //estudio proprietário ou editora
+    private String status;
+    private String disponibilidade; //onde a midia pode ser econtrada
+    private String tipo; //anime, serie, filme...
+    private Date mesAno; //data lancamento
+    private int temps;
+    private int maxEps;
+    private int duracaoEP;
+    private String statusVisto; //se o usuario esta assistindo ou ñ ou se pretende ver
+    @OneToMany
+    private List<Personagens> personagens;
+    private int duracao;
+    public Serie(String nome, String autor, String estudio){
     }
 
     public Serie(SerieRequestDTO data) {
     }
 
-    public int gettemps() {
-        return super.getTemps();
+    public Long getId() {
+        return id;
     }
 
-    public void settemps(int temps) {
-        super.setTemps(temps);
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+
+    public String getEstudio() {
+        return estudio;
+    }
+
+    public void setEstudio(String estudio) {
+        this.estudio = estudio;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getDisponibilidade() {
+        return disponibilidade;
+    }
+
+    public void setDisponibilidade(String disponibilidade) {
+        this.disponibilidade = disponibilidade;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public Date getMesAno() {
+        return mesAno;
+    }
+
+    public void setMesAno(Date mesAno) {
+        this.mesAno = mesAno;
+    }
+
+    public int getTemps() {
+        return temps;
+    }
+
+    public void setTemps(int temps) {
+        this.temps = temps;
     }
 
     public int getMaxEps() {
-        return super.getMaxEps();
+        return maxEps;
     }
 
     public void setMaxEps(int maxEps) {
-        super.setMaxEps(maxEps);
+        this.maxEps = maxEps;
     }
 
     public int getDuracaoEP() {
-        return super.getDuracaoEP();
+        return duracaoEP;
     }
 
     public void setDuracaoEP(int duracaoEP) {
-        super.setDuracaoEP(duracaoEP);
+        this.duracaoEP = duracaoEP;
     }
 
     public String getStatusVisto() {
-        return super.getStatusVisto();
+        return statusVisto;
     }
 
     public void setStatusVisto(String statusVisto) {
-        super.setStatusVisto(statusVisto);
+        this.statusVisto = statusVisto;
     }
 
-    public Elenco getElenco() {
-        return super.getElenco();
+    public List<Personagens> getPersonagens() {
+        return personagens;
     }
 
-    public void setElenco(Elenco elenco) {
-        super.setElenco(elenco);
+    public void setPersonagens(List<Personagens> personagens) {
+        this.personagens = personagens;
+    }
+
+    public int getDuracao() {
+        return duracao;
+    }
+
+    public void setDuracao(int duracao) {
+        this.duracao = duracao;
     }
 
     @Override
     public String toString() {
-        return super.toString();
+        return "Serie{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", descrição='" + descricao + '\'' +
+                ", autor='" + autor + '\'' +
+                ", estudio='" + estudio + '\'' +
+                ", status='" + status + '\'' +
+                ", disponibilidade='" + disponibilidade + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", mesAno=" + mesAno +
+                ", temps=" + temps +
+                ", maxEps=" + maxEps +
+                ", duracaoEP=" + duracaoEP +
+                ", statusVisto='" + statusVisto + '\'' +
+                ", personagens=" + personagens +
+                ", duracao=" + duracao +
+                '}';
     }
-    
 }
