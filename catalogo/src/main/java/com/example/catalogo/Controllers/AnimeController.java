@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("Anime")
+@RequestMapping("anime")
 public class AnimeController {
 
     @Autowired
@@ -18,7 +18,6 @@ public class AnimeController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
-    @RequestMapping("/animes")
     public List<AnimeResponseDTO> getAll(){
         List<AnimeResponseDTO> AnimeList = AnimeRep.findAll().stream().map(AnimeResponseDTO::new).toList();
         return AnimeList;
@@ -26,7 +25,6 @@ public class AnimeController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping
-    @RequestMapping("/animesSave")
     public void saveAnime(@RequestBody AnimeRequestDTO data){
         Anime AnimeData = new Anime(data);
         AnimeRep.save(AnimeData);

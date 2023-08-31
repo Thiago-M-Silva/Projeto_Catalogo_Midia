@@ -8,27 +8,28 @@ import java.sql.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "Serie")
+@Table(name = "serie")
 public class Serie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "serie_id")
     private Long id;
-
     private String nome;
     private String descricao;
     private String autor;
     private String estudio; //estudio proprietário ou editora
     private String status;
     private String disponibilidade; //onde a midia pode ser econtrada
-    private String tipo; //anime, serie, filme...
+    @Column(name = "dt_lanc")
     private Date mesAno; //data lancamento
     private int temps;
+    @Column(name = "maxeps")
     private int maxEps;
-    private int duracaoEP;
+    @Column(name = "statusvisto")
     private String statusVisto; //se o usuario esta assistindo ou ñ ou se pretende ver
-    @OneToMany
+    @OneToMany(mappedBy = "serie")
     private List<Personagens> personagens;
-    private int duracao;
+
     public Serie(String nome, String autor, String estudio){
     }
 
@@ -91,14 +92,6 @@ public class Serie {
         this.disponibilidade = disponibilidade;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
     public Date getMesAno() {
         return mesAno;
     }
@@ -123,14 +116,6 @@ public class Serie {
         this.maxEps = maxEps;
     }
 
-    public int getDuracaoEP() {
-        return duracaoEP;
-    }
-
-    public void setDuracaoEP(int duracaoEP) {
-        this.duracaoEP = duracaoEP;
-    }
-
     public String getStatusVisto() {
         return statusVisto;
     }
@@ -147,14 +132,6 @@ public class Serie {
         this.personagens = personagens;
     }
 
-    public int getDuracao() {
-        return duracao;
-    }
-
-    public void setDuracao(int duracao) {
-        this.duracao = duracao;
-    }
-
     @Override
     public String toString() {
         return "Serie{" +
@@ -165,14 +142,11 @@ public class Serie {
                 ", estudio='" + estudio + '\'' +
                 ", status='" + status + '\'' +
                 ", disponibilidade='" + disponibilidade + '\'' +
-                ", tipo='" + tipo + '\'' +
                 ", mesAno=" + mesAno +
                 ", temps=" + temps +
                 ", maxEps=" + maxEps +
-                ", duracaoEP=" + duracaoEP +
                 ", statusVisto='" + statusVisto + '\'' +
                 ", personagens=" + personagens +
-                ", duracao=" + duracao +
                 '}';
     }
 }

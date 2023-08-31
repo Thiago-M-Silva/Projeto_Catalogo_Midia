@@ -11,23 +11,26 @@ import java.util.List;
 public class Anime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "anime_id")
     private Long id;
-
     private String nome;
     private String descricao;
     private String autor;
     private String estudio; //estudio proprietário ou editora
     private String status;
     private String disponibilidade; //onde a midia pode ser econtrada
-    private String tipo; //anime, serie, filme...
+    @Column(name = "dt_lanc")
     private Date mesAno; //data lancamento
     private int temps;
+    @Column(name = "maxeps")
     private int maxEps;
+    @Column(name = "duracaoep")
     private int duracaoEP;
+    @Column(name = "statusvisto")
     private String statusVisto; //se o usuario esta assistindo ou ñ ou se pretende ver
-    @OneToMany
+    @OneToMany(mappedBy = "anime")
     private List<Personagens> personagens;
-    private int duracao;
+
     public Anime(String nome, String autor, String estudio, int temps, int maxEps, int duracaoEP){
 
     }
@@ -92,14 +95,6 @@ public class Anime {
         this.disponibilidade = disponibilidade;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
     public Date getMesAno() {
         return mesAno;
     }
@@ -147,15 +142,6 @@ public class Anime {
     public void setPersonagens(List<Personagens> personagens) {
         this.personagens = personagens;
     }
-
-    public int getDuracao() {
-        return duracao;
-    }
-
-    public void setDuracao(int duracao) {
-        this.duracao = duracao;
-    }
-
     @Override
     public String toString() {
         return "Anime{" +
@@ -166,14 +152,12 @@ public class Anime {
                 ", estudio='" + estudio + '\'' +
                 ", status='" + status + '\'' +
                 ", disponibilidade='" + disponibilidade + '\'' +
-                ", tipo='" + tipo + '\'' +
-                ", mesAno=" + mesAno +
-                ", temps=" + temps +
-                ", maxEps=" + maxEps +
-                ", duracaoEP=" + duracaoEP +
+                ", mesAno=" + mesAno + '\'' +
+                ", temps=" + temps + '\'' +
+                ", maxEps=" + maxEps + '\'' +
+                ", duracaoEP=" + duracaoEP + '\'' +
                 ", statusVisto='" + statusVisto + '\'' +
-                ", personagens=" + personagens +
-                ", duracao=" + duracao +
+                ", personagens=" + personagens + '\'' +
                 '}';
     }
 }

@@ -7,29 +7,23 @@ import java.sql.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "Livro")
+@Table(name = "livro")
 public class Livro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "livro_id")
     private Long id;
-
     private String nome;
     private String descricao;
-
     private String autor;
-    private String estudio; //estudio proprietário ou editora
-    private String status;
     private String disponibilidade; //onde a midia pode ser econtrada
-    private String tipo; //anime, serie, filme...
+    @Column(name = "dt_lanc")
     private Date mesAno; //data lancamento
-    private int temps;
-    private int maxEps;
-    private int duracaoEP;
+    @Column(name = "statusvisto")
     private String statusVisto; //se o usuario esta assistindo ou ñ ou se pretende ver
-    @OneToMany
-    private List<Personagens> personagens;
-    private int duracao;
     private int paginas; //numero de paginas
+    @OneToMany(mappedBy = "livro")
+    private List<Personagens> personagens;
 
     public Livro(String nome, String autor, String editora, int paginas){
         this.paginas = paginas;
@@ -69,23 +63,6 @@ public class Livro {
     public void setAutor(String autor) {
         this.autor = autor;
     }
-
-    public String getEstudio() {
-        return estudio;
-    }
-
-    public void setEstudio(String estudio) {
-        this.estudio = estudio;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getDisponibilidade() {
         return disponibilidade;
     }
@@ -94,44 +71,12 @@ public class Livro {
         this.disponibilidade = disponibilidade;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
     public Date getMesAno() {
         return mesAno;
     }
 
     public void setMesAno(Date mesAno) {
         this.mesAno = mesAno;
-    }
-
-    public int getTemps() {
-        return temps;
-    }
-
-    public void setTemps(int temps) {
-        this.temps = temps;
-    }
-
-    public int getMaxEps() {
-        return maxEps;
-    }
-
-    public void setMaxEps(int maxEps) {
-        this.maxEps = maxEps;
-    }
-
-    public int getDuracaoEP() {
-        return duracaoEP;
-    }
-
-    public void setDuracaoEP(int duracaoEP) {
-        this.duracaoEP = duracaoEP;
     }
 
     public String getStatusVisto() {
@@ -150,14 +95,6 @@ public class Livro {
         this.personagens = personagens;
     }
 
-    public int getDuracao() {
-        return duracao;
-    }
-
-    public void setDuracao(int duracao) {
-        this.duracao = duracao;
-    }
-
     public int getPaginas() {
         return paginas;
     }
@@ -173,18 +110,11 @@ public class Livro {
                 ", nome='" + nome + '\'' +
                 ", descrição='" + descricao + '\'' +
                 ", autor='" + autor + '\'' +
-                ", estudio='" + estudio + '\'' +
-                ", status='" + status + '\'' +
                 ", disponibilidade='" + disponibilidade + '\'' +
-                ", tipo='" + tipo + '\'' +
-                ", mesAno=" + mesAno +
-                ", temps=" + temps +
-                ", maxEps=" + maxEps +
-                ", duracaoEP=" + duracaoEP +
+                ", mesAno=" + mesAno +  '\'' +
                 ", statusVisto='" + statusVisto + '\'' +
-                ", personagens=" + personagens +
-                ", duracao=" + duracao +
-                ", paginas=" + paginas +
+                ", personagens=" + personagens + '\'' +
+                ", paginas=" + paginas + '\'' +
                 '}';
     }
 }

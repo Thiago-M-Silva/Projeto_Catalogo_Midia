@@ -8,36 +8,34 @@ import com.example.catalogo.Novela.Novela;
 import com.example.catalogo.Serie.Serie;
 import jakarta.persistence.*;
 
-import java.util.List;
-
-
 @Entity
-@Table(name = "Personagens")
+@Table(name = "personagens")
 public class Personagens {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "personagem_id")
     private long id;
     private String nome;
     @ManyToOne
-    @JoinColumn(name = "id_anime")
+    @JoinColumn(name = "anime_id")
     private Anime anime;
     @ManyToOne
-    @JoinColumn(name = "id_filme")
+    @JoinColumn(name = "filme_id")
     private Filme filme;
     @ManyToOne
-    @JoinColumn(name = "id_livro")
+    @JoinColumn(name = "livro_id")
     private Livro livro;
     @ManyToOne
-    @JoinColumn(name = "id_manga")
+    @JoinColumn(name = "manga_id")
     private Manga manga;
     @ManyToOne
-    @JoinColumn(name = "id_novela")
+    @JoinColumn(name = "novela_id")
     private Novela novela;
     @ManyToOne
-    @JoinColumn(name = "id_serie")
+    @JoinColumn(name = "serie_id")
     private Serie serie;
-    @ManyToMany(mappedBy = "personagem")
-    private List<Ator> ator;
+    @Column(name = "atornome")
+    private String atorNome;
 
     public Personagens(String nome) {
         this.nome = nome;
@@ -107,12 +105,11 @@ public class Personagens {
         this.id = id;
     }
 
-    public List<Ator> getAtor() {
-        return ator;
+    public String getAtorNome() {
+        return atorNome;
     }
 
-    public void setAtor(List<Ator> ator) {
-        this.ator = ator;
+    public void setAtorNome(String atorNome) {
+        this.atorNome = atorNome;
     }
-
 }
