@@ -33,6 +33,8 @@ public class Serie {
     public Serie(String nome, String autor, String estudio){
     }
 
+    public Serie(){}
+
     public Serie(SerieRequestDTO data) {
     }
 

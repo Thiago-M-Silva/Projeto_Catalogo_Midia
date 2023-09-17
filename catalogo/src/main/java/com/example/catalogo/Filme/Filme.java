@@ -20,6 +20,7 @@ public class Filme {
     private String disponibilidade; //onde a midia pode ser econtrada
     @Column(name = "dt_lanc")
     private Date mesAno; //data lancamento
+    @Column(name = "status_visto")
     private String statusVisto; //se o usuario esta assistindo ou ñ ou se pretende ver
     @Column(name = "duracaomin")
     private int duracao;
@@ -29,6 +30,8 @@ public class Filme {
     public Filme(String nome, String autor, String estudio, int duracao){
         this.duracao = duracao;
     }
+
+    public Filme(){}
 
     public Filme(FilmeRequestDTO data) {
     }

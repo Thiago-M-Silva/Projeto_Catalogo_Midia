@@ -19,6 +19,7 @@ public class Novela {
     private String estudio; //estudio proprietário ou editora
     private String status;
     private String disponibilidade; //onde a midia pode ser econtrada
+    @Column(name = "dt_lanc")
     private Date mesAno; //data lancamento
     private int maxEps;
     private String statusVisto; //se o usuario esta assistindo ou ñ ou se pretende ver
@@ -28,6 +29,8 @@ public class Novela {
     public Novela(String nome, String autor, String estudio, int maxEps, int duracaoEP){
         this.maxEps = maxEps;
     }
+
+    public Novela(){}
 
     public Novela(NovelaRequestDTO data) {
     }

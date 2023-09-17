@@ -17,7 +17,6 @@ public class Manga {
     private String descricao;
     private String autor;
     private String status;
-    private String disponibilidade; //onde a midia pode ser econtrada
     @Column(name = "dt_lanc")
     private Date mesAno; //data lancamento
     @Column(name = "caps")
@@ -32,6 +31,8 @@ public class Manga {
         this.status = status;
         this.qtdCaps = qtdCaps;
     }
+
+    public Manga(){}
 
     public Manga(MangaRequestDTO data) {
     }
@@ -92,13 +93,6 @@ public class Manga {
         this.nacionalidade = nacionalidade;
     }
 
-    public String getDisponibilidade() {
-        return disponibilidade;
-    }
-
-    public void setDisponibilidade(String disponibilidade) {
-        this.disponibilidade = disponibilidade;
-    }
     public Date getMesAno() {
         return mesAno;
     }
@@ -130,7 +124,6 @@ public class Manga {
                 ", descrição='" + descricao + '\'' +
                 ", autor='" + autor + '\'' +
                 ", status='" + status + '\'' +
-                ", disponibilidade='" + disponibilidade + '\'' +
                 ", mesAno=" + mesAno + '\'' +
                 ", personagens=" + personagens + '\'' +
                 ", qtdCaps=" + qtdCaps + '\'' +

@@ -16,7 +16,6 @@ public class Livro {
     private String nome;
     private String descricao;
     private String autor;
-    private String disponibilidade; //onde a midia pode ser econtrada
     @Column(name = "dt_lanc")
     private Date mesAno; //data lancamento
     @Column(name = "statusvisto")
@@ -28,6 +27,8 @@ public class Livro {
     public Livro(String nome, String autor, String editora, int paginas){
         this.paginas = paginas;
     }
+
+    public Livro(){}
 
     public Livro(LivroRequestDTO data) {
     }
@@ -62,13 +63,6 @@ public class Livro {
 
     public void setAutor(String autor) {
         this.autor = autor;
-    }
-    public String getDisponibilidade() {
-        return disponibilidade;
-    }
-
-    public void setDisponibilidade(String disponibilidade) {
-        this.disponibilidade = disponibilidade;
     }
 
     public Date getMesAno() {
@@ -110,7 +104,6 @@ public class Livro {
                 ", nome='" + nome + '\'' +
                 ", descrição='" + descricao + '\'' +
                 ", autor='" + autor + '\'' +
-                ", disponibilidade='" + disponibilidade + '\'' +
                 ", mesAno=" + mesAno +  '\'' +
                 ", statusVisto='" + statusVisto + '\'' +
                 ", personagens=" + personagens + '\'' +

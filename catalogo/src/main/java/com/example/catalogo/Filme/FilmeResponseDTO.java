@@ -1,7 +1,16 @@
 package com.example.catalogo.Filme;
 
-public record FilmeResponseDTO(Long id, String nome) {
+public record FilmeResponseDTO(Long id, String nome, String descricao, String auto,
+                               String estudio, String disponibilidade, String statusVisto,
+                               int duracao) {
     public FilmeResponseDTO(Filme filme){
-        this(filme.getId(), filme.getNome());
+        this(filme.getId(),
+                filme.getNome(),
+                filme.getAutor(),
+                filme.getDescrição(),
+                filme.getDisponibilidade(),
+                filme.getEstudio(),
+                filme.getStatusVisto(),
+                filme.getDuracao());
     }
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("Serie")
+@RequestMapping("serie")
 public class SerieController {
 
     @Autowired
@@ -18,8 +18,6 @@ public class SerieController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
     public List<SerieResponseDTO> getAll(){
-        //No caso, provavelmente vai ter que modificar essa func
-        //para cada tipo de midia do proj
         List<SerieResponseDTO> SerieList = SerieRep.findAll().stream().map(SerieResponseDTO::new).toList();
         return SerieList;
     }

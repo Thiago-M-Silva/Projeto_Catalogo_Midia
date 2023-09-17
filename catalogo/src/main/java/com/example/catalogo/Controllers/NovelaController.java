@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("Novela")
+@RequestMapping("novela")
 public class NovelaController {
 
     @Autowired
@@ -18,8 +18,6 @@ public class NovelaController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
     public List<NovelaResponseDTO> getAll(){
-        //No caso, provavelmente vai ter que modificar essa func
-        //para cada tipo de midia do proj
         List<NovelaResponseDTO> NovelaList = NovelaRep.findAll().stream().map(NovelaResponseDTO::new).toList();
         return NovelaList;
     }

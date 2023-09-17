@@ -24,8 +24,6 @@ public class Anime {
     private int temps;
     @Column(name = "maxeps")
     private int maxEps;
-    @Column(name = "duracaoep")
-    private int duracaoEP;
     @Column(name = "statusvisto")
     private String statusVisto; //se o usuario esta assistindo ou ñ ou se pretende ver
     @OneToMany(mappedBy = "anime")
@@ -34,6 +32,8 @@ public class Anime {
     public Anime(String nome, String autor, String estudio, int temps, int maxEps, int duracaoEP){
 
     }
+
+    public Anime(){}
 
     public Anime(AnimeRequestDTO data) {
         super();
@@ -119,14 +119,6 @@ public class Anime {
         this.maxEps = maxEps;
     }
 
-    public int getDuracaoEP() {
-        return duracaoEP;
-    }
-
-    public void setDuracaoEP(int duracaoEP) {
-        this.duracaoEP = duracaoEP;
-    }
-
     public String getStatusVisto() {
         return statusVisto;
     }
@@ -155,7 +147,6 @@ public class Anime {
                 ", mesAno=" + mesAno + '\'' +
                 ", temps=" + temps + '\'' +
                 ", maxEps=" + maxEps + '\'' +
-                ", duracaoEP=" + duracaoEP + '\'' +
                 ", statusVisto='" + statusVisto + '\'' +
                 ", personagens=" + personagens + '\'' +
                 '}';
