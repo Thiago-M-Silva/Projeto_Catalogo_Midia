@@ -1,4 +1,5 @@
 package com.example.catalogo.Manga;
 
-public record MangaRequestDTO(String Nome, String tipo) {
+public record MangaRequestDTO(Long id, String nome, String descricao, String autor,
+                              String status, int qtdCaps, String statusLido, String nacionalidade) {
 }

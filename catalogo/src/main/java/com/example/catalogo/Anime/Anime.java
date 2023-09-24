@@ -29,14 +29,21 @@ public class Anime {
     @OneToMany(mappedBy = "anime")
     private List<Personagens> personagens;
 
-    public Anime(String nome, String autor, String estudio, int temps, int maxEps, int duracaoEP){
-
-    }
+//    public Anime(String nome, String autor, String estudio, int temps, int maxEps, int duracaoEP){
+//
+//    }
 
     public Anime(){}
 
     public Anime(AnimeRequestDTO data) {
-        super();
+        this.nome = data.nome();
+        this.descricao = data.descricao();
+        this.autor = data.autor();
+        this.maxEps = data.maxeps();
+        this.estudio = data.estudio();
+        this.disponibilidade = data.disponibilidade();
+        this.status = data.status();
+        this.statusVisto = data.StatusVisto();
     }
 
     public Long getId() {
