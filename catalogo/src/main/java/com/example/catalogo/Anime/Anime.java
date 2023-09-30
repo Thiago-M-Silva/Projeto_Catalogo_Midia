@@ -29,10 +29,6 @@ public class Anime {
     @OneToMany(mappedBy = "anime")
     private List<Personagens> personagens;
 
-//    public Anime(String nome, String autor, String estudio, int temps, int maxEps, int duracaoEP){
-//
-//    }
-
     public Anime(){}
 
     public Anime(AnimeRequestDTO data) {

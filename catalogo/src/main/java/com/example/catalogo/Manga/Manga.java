@@ -27,14 +27,16 @@ public class Manga {
     @OneToMany(mappedBy = "manga")
     private List<Personagens> personagens;
 
-    public Manga(String nome, String autor, String estudio, int qtdCaps, String status){
-        this.status = status;
-        this.qtdCaps = qtdCaps;
-    }
-
     public Manga(){}
 
     public Manga(MangaRequestDTO data) {
+        this.nome = data.nome();
+        this.descricao = data.descricao();
+        this.autor = data.autor();
+        this.qtdCaps = data.qtdCaps();
+        this.nacionalidade = data.nacionalidade();
+        this.status = data.status();
+        this.statusLido = data.statusLido();
     }
 
     public Long getId() {

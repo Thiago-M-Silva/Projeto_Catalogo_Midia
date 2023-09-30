@@ -24,13 +24,14 @@ public class Livro {
     @OneToMany(mappedBy = "livro")
     private List<Personagens> personagens;
 
-    public Livro(String nome, String autor, String editora, int paginas){
-        this.paginas = paginas;
-    }
-
     public Livro(){}
 
     public Livro(LivroRequestDTO data) {
+        this.nome = data.nome();
+        this.descricao = data.descricao();
+        this.autor = data.autor();
+        this.statusVisto = data.statusVisto();
+        this.paginas = data.paginas();
     }
 
     public Long getId() {

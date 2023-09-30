@@ -26,13 +26,17 @@ public class Novela {
     @OneToMany(mappedBy = "novela")
     private List<Personagens> personagens;
 
-    public Novela(String nome, String autor, String estudio, int maxEps, int duracaoEP){
-        this.maxEps = maxEps;
-    }
-
     public Novela(){}
 
     public Novela(NovelaRequestDTO data) {
+        this.nome = data.nome();
+        this.descricao = data.descricao();
+        this.autor = data.autor();
+        this.estudio = data.estudio();
+        this.disponibilidade = data.disponibilidade();
+        this.status = data.status();
+        this.maxEps = data.maxEps();
+        this.statusVisto = data.statusVisto();
     }
 
     public Long getId() {

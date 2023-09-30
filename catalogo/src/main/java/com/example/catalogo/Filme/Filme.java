@@ -26,14 +26,17 @@ public class Filme {
     private int duracao;
     @OneToMany(mappedBy = "filme")
     private List<Personagens> personagens;
-    
-    public Filme(String nome, String autor, String estudio, int duracao){
-        this.duracao = duracao;
-    }
 
     public Filme(){}
 
     public Filme(FilmeRequestDTO data) {
+        this.nome = data.nome();
+        this.descricao = data.descricao();
+        this.autor = data.autor();
+        this.estudio = data.estudio();
+        this.disponibilidade = data.disponibilidade();
+        this.statusVisto = data.statusVisto();
+        this.duracao = data.duracao();
     }
 
     public Long getId() { return id; }

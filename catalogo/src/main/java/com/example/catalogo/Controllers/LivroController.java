@@ -1,5 +1,7 @@
 package com.example.catalogo.Controllers;
 
+import com.example.catalogo.Filme.Filme;
+import com.example.catalogo.Filme.FilmeRequestDTO;
 import com.example.catalogo.Livro.LivroRepository;
 import com.example.catalogo.Livro.LivroRequestDTO;
 import com.example.catalogo.Livro.LivroResponseDTO;
@@ -29,5 +31,19 @@ public class LivroController {
         Livro LivroData = new Livro(data);
         LivroRep.save(LivroData);
 
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @DeleteMapping("/{id}")
+    public void deleteLivro(@PathVariable("id") Long id){
+        LivroRep.deleteById(id);
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @PutMapping("/{id}")
+    public void updateLivro(@PathVariable("id") Long id, @RequestBody LivroRequestDTO data){
+        LivroRep.deleteById(id);
+        Livro LivroData = new Livro(data);
+        LivroRep.save(LivroData);
     }
 }

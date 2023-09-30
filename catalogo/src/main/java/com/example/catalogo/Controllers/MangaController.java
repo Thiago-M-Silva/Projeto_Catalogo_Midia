@@ -1,5 +1,7 @@
 package com.example.catalogo.Controllers;
 
+import com.example.catalogo.Filme.Filme;
+import com.example.catalogo.Filme.FilmeRequestDTO;
 import com.example.catalogo.Manga.MangaRepository;
 import com.example.catalogo.Manga.MangaRequestDTO;
 import com.example.catalogo.Manga.MangaResponseDTO;
@@ -29,5 +31,19 @@ public class MangaController {
         Manga MangaData = new Manga(data);
         MangaRep.save(MangaData);
 
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @DeleteMapping("/{id}")
+    public void deleteManga(@PathVariable("id") Long id){
+        MangaRep.deleteById(id);
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @PutMapping("/{id}")
+    public void updateManga(@PathVariable("id") Long id, @RequestBody MangaRequestDTO data){
+        MangaRep.deleteById(id);
+        Manga MangaData = new Manga(data);
+        MangaRep.save(MangaData);
     }
 }

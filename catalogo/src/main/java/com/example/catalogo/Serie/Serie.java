@@ -30,12 +30,18 @@ public class Serie {
     @OneToMany(mappedBy = "serie")
     private List<Personagens> personagens;
 
-    public Serie(String nome, String autor, String estudio){
-    }
-
     public Serie(){}
 
     public Serie(SerieRequestDTO data) {
+        this.nome = data.nome();
+        this.descricao = data.descricao();
+        this.autor = data.autor();
+        this.estudio = data.estudio();
+        this.disponibilidade = data.disponibilidade();
+        this.status = data.status();
+        this.statusVisto = data.statusVisto();
+        this.maxEps = data.maxEps();
+        this.temps = data.temps();
     }
 
     public Long getId() {
