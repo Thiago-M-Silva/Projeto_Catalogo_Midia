@@ -1,32 +1,26 @@
 package com.example.catalogo.Usuario;
 
-import com.example.catalogo.Anime.Anime;
-import com.example.catalogo.Filme.Filme;
-import com.example.catalogo.Livro.Livro;
-import com.example.catalogo.Manga.Manga;
-
-import com.example.catalogo.Novela.Novela;
-import com.example.catalogo.Serie.Serie;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "usuario")
 public class Usuario {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "usuario_id")
     private Long id;
     private String nome;
-//    private Anime anime;
-//    private Filme filme;
-//    private Livro livro;
-//    private Manga manga;
-//    private Novela novela;
-//    private Serie serie;
     private String tipo; //"A" para adm ou "C" para cliente
+    private String email;
+    private String senha;
 
-    Usuario(String nome){
-        this.nome = nome;
+    public Usuario(){}
+
+    public Usuario(UsuarioRequestDTO data){
+        this.nome = data.nome();
+        this.tipo = data.tipo();
+        this.email = data.email();
+        this.senha = data.senha();
     }
 
     public String getNome() {
@@ -45,54 +39,6 @@ public class Usuario {
         this.id = id;
     }
 
-//    public Anime getAnime() {
-//        return anime;
-//    }
-//
-//    public void setAnime(Anime anime) {
-//        this.anime = anime;
-//    }
-//
-//    public Filme getFilme() {
-//        return filme;
-//    }
-//
-//    public void setFilme(Filme filme) {
-//        this.filme = filme;
-//    }
-//
-//    public Livro getLivro() {
-//        return livro;
-//    }
-//
-//    public void setLivro(Livro livro) {
-//        this.livro = livro;
-//    }
-//
-//    public Manga getManga() {
-//        return manga;
-//    }
-//
-//    public void setManga(Manga manga) {
-//        this.manga = manga;
-//    }
-//
-//    public Novela getNovela() {
-//        return novela;
-//    }
-//
-//    public void setNovela(Novela novela) {
-//        this.novela = novela;
-//    }
-//
-//    public Serie getSerie() {
-//        return serie;
-//    }
-//
-//    public void setSerie(Serie serie) {
-//        this.serie = serie;
-//    }
-
     public String getTipo() {
         return tipo;
     }
@@ -101,6 +47,13 @@ public class Usuario {
         this.tipo = tipo;
     }
 
+    public String getEmail() { return email; }
+
+    public void setEmail(String email) { this.email = email; }
+
+    public String getSenha() { return senha; }
+
+    public void setSenha(String senha) { this.senha = senha; }
 
     public void adicionarMidia(String tipo){
 
@@ -126,9 +79,6 @@ public class Usuario {
         //teste github
     }
 
-//    @Override
-//    public String toString() {
-//        return "Usuario [nome=" + nome + ", anime=" + anime + "]";
-//    }
+
 
 }

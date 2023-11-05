@@ -1,9 +1,11 @@
 package com.example.catalogo.Usuario;
 
-import com.example.catalogo.Serie.Serie;
-
-public record UsuarioResponseDTO(Long id, String nome, String tipo) {
+public record UsuarioResponseDTO(Long id, String Nome, String tipo, String email, String senha) {
     public UsuarioResponseDTO(Usuario usuario){
-        this(usuario.getId(), usuario.getNome(), usuario.getTipo());
+        this(usuario.getId(),
+                usuario.getNome(),
+                usuario.getTipo(),
+                usuario.getEmail(),
+                usuario.getSenha());
     }
 }
