@@ -42,8 +42,14 @@ public class MangaController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/{id}")
     public void updateManga(@PathVariable("id") Long id, @RequestBody MangaRequestDTO data){
-        MangaRep.deleteById(id);
-        Manga MangaData = new Manga(data);
-        MangaRep.save(MangaData);
+        Manga manga = MangaRep.getReferenceById(id);
+        manga.setNome(data.nome());
+        manga.setDescricao(data.descricao());
+        manga.setAutor(data.autor());
+        manga.setStatus(data.status());
+        manga.setQtdCaps(data.qtdCaps());
+        manga.setStatusLido(data.statusLido());
+        manga.setNacionalidade(data.nacionalidade());
+        MangaRep.save(manga);
     }
 }

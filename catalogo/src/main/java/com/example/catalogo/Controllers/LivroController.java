@@ -42,8 +42,12 @@ public class LivroController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/{id}")
     public void updateLivro(@PathVariable("id") Long id, @RequestBody LivroRequestDTO data){
-        LivroRep.deleteById(id);
-        Livro LivroData = new Livro(data);
-        LivroRep.save(LivroData);
+        Livro livro = LivroRep.getReferenceById(id);
+        livro.setNome(data.nome());
+        livro.setDescrição(data.descricao());
+        livro.setAutor(data.autor());
+        livro.setStatusVisto(data.statusVisto());
+        livro.setPaginas(data.paginas());
+        LivroRep.save(livro);
     }
 }

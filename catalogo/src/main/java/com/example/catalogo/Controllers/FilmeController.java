@@ -1,7 +1,5 @@
 package com.example.catalogo.Controllers;
 
-import com.example.catalogo.Anime.Anime;
-import com.example.catalogo.Anime.AnimeRequestDTO;
 import com.example.catalogo.Filme.FilmeRepository;
 import com.example.catalogo.Filme.FilmeRequestDTO;
 import com.example.catalogo.Filme.FilmeResponseDTO;
@@ -42,8 +40,14 @@ public class FilmeController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/{id}")
     public void updateFilme(@PathVariable("id") Long id, @RequestBody FilmeRequestDTO data){
-        FilmeRep.deleteById(id);
-        Filme FilmeData = new Filme(data);
-        FilmeRep.save(FilmeData);
+        Filme filme = FilmeRep.getReferenceById(id);
+        filme.setNome(data.nome());
+        filme.setAutor(data.autor());
+        filme.setDescricao(data.descricao());
+        filme.setEstudio(data.estudio());
+        filme.setDisponibilidade(data.disponibilidade());
+        filme.setStatusVisto(data.statusVisto());
+        filme.setDuracao(data.duracao());
+        FilmeRep.save(filme);
     }
 }

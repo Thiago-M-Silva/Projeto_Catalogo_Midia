@@ -1,4 +1,4 @@
-package com.example.catalogo.Anime;
+package com.example.catalogo.Jogos;
 
 import com.example.catalogo.Personagens;
 import jakarta.persistence.*;
@@ -6,39 +6,33 @@ import jakarta.persistence.*;
 import java.sql.Date;
 import java.util.List;
 
-@Table(name = "anime")
+@Table(name = "jogos")
 @Entity
-public class Anime {
+public class Jogos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "anime_id")
+    @Column(name = "jogos_id")
     private Long id;
+    private Long duracaoMedia;
     private String nome;
     private String descricao;
     private String autor;
     private String estudio; //estudio proprietário ou editora
-    private String status;
     private String disponibilidade; //onde a midia pode ser econtrada
     @Column(name = "dt_lanc")
     private Date mesAno; //data lancamento
-    private int temps;
-    @Column(name = "maxeps")
-    private int maxEps;
     @Column(name = "statusvisto")
     private String statusVisto; //se o usuario esta assistindo ou ñ ou se pretende ver
-    @OneToMany(mappedBy = "anime")
-    private List<Personagens> personagens;
 
-    public Anime(){}
 
-    public Anime(AnimeRequestDTO data) {
+    public Jogos(){}
+
+    public Jogos(JogosRequestDTO data) {
         this.nome = data.nome();
         this.descricao = data.descricao();
         this.autor = data.autor();
-        this.maxEps = data.maxeps();
         this.estudio = data.estudio();
         this.disponibilidade = data.disponibilidade();
-        this.status = data.status();
         this.statusVisto = data.StatusVisto();
     }
 
@@ -82,14 +76,6 @@ public class Anime {
         this.estudio = estudio;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getDisponibilidade() {
         return disponibilidade;
     }
@@ -106,22 +92,6 @@ public class Anime {
         this.mesAno = mesAno;
     }
 
-    public int getTemps() {
-        return temps;
-    }
-
-    public void setTemps(int temps) {
-        this.temps = temps;
-    }
-
-    public int getMaxEps() {
-        return maxEps;
-    }
-
-    public void setMaxEps(int maxEps) {
-        this.maxEps = maxEps;
-    }
-
     public String getStatusVisto() {
         return statusVisto;
     }
@@ -130,28 +100,25 @@ public class Anime {
         this.statusVisto = statusVisto;
     }
 
-    public List<Personagens> getPersonagens() {
-        return personagens;
+    public Long getDuracaoMedia() {
+        return duracaoMedia;
     }
 
-    public void setPersonagens(List<Personagens> personagens) {
-        this.personagens = personagens;
+    public void setDuracaoMedia(Long duracaoMedia) {
+        this.duracaoMedia = duracaoMedia;
     }
+
     @Override
     public String toString() {
-        return "Anime{" +
+        return "Jogos{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", descrição='" + descricao + '\'' +
                 ", autor='" + autor + '\'' +
                 ", estudio='" + estudio + '\'' +
-                ", status='" + status + '\'' +
                 ", disponibilidade='" + disponibilidade + '\'' +
                 ", mesAno=" + mesAno + '\'' +
-                ", temps=" + temps + '\'' +
-                ", maxEps=" + maxEps + '\'' +
                 ", statusVisto='" + statusVisto + '\'' +
-                ", personagens=" + personagens + '\'' +
                 '}';
     }
 }

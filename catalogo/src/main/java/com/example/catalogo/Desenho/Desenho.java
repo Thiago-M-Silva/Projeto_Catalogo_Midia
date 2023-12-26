@@ -1,49 +1,59 @@
-package com.example.catalogo.Filme;
+package com.example.catalogo.Desenho;
 
 import com.example.catalogo.Personagens;
 import jakarta.persistence.*;
 
 import java.sql.Date;
 import java.util.List;
+
+@Table(name = "desenho")
 @Entity
-@Table(name = "filme")
-public class Filme {
+public class Desenho {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "filme_id")
+    @Column(name = "desenho_id")
     private Long id;
     private String nome;
     private String descricao;
-    @Column(name = "diretor")
     private String autor;
     private String estudio; //estudio proprietário ou editora
+    private String status;
     private String disponibilidade; //onde a midia pode ser econtrada
     @Column(name = "dt_lanc")
     private Date mesAno; //data lancamento
-    @Column(name = "status_visto")
+    private int temps;
+    @Column(name = "maxeps")
+    private int maxEps;
+    @Column(name = "statusvisto")
     private String statusVisto; //se o usuario esta assistindo ou ñ ou se pretende ver
-    @Column(name = "duracaomin")
-    private int duracao;
-    @OneToMany(mappedBy = "filme")
+    private String nacionalidade;
+    //private List categorias;
+    @OneToMany(mappedBy = "desenho")
     private List<Personagens> personagens;
 
-    public Filme(){}
+    public Desenho(){}
 
-    public Filme(FilmeRequestDTO data) {
+    public Desenho(DesenhoRequestDTO data) {
         this.nome = data.nome();
         this.descricao = data.descricao();
         this.autor = data.autor();
+        this.maxEps = data.maxeps();
         this.estudio = data.estudio();
         this.disponibilidade = data.disponibilidade();
-        this.statusVisto = data.statusVisto();
-        this.duracao = data.duracao();
+        this.status = data.status();
+        this.statusVisto = data.StatusVisto();
     }
 
-    public Long getId() { return id; }
+    public Long getId() {
+        return id;
+    }
 
-    public void setId(Long id) { this.id = id; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getNome() { return nome;
+    public String getNome() {
+        return nome;
     }
 
     public void setNome(String nome) {
@@ -74,6 +84,14 @@ public class Filme {
         this.estudio = estudio;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public String getDisponibilidade() {
         return disponibilidade;
     }
@@ -90,12 +108,37 @@ public class Filme {
         this.mesAno = mesAno;
     }
 
+    public int getTemps() {
+        return temps;
+    }
+
+    public void setTemps(int temps) {
+        this.temps = temps;
+    }
+
+    public int getMaxEps() {
+        return maxEps;
+    }
+
+    public void setMaxEps(int maxEps) {
+        this.maxEps = maxEps;
+    }
+
     public String getStatusVisto() {
         return statusVisto;
     }
 
     public void setStatusVisto(String statusVisto) {
         this.statusVisto = statusVisto;
+    }
+
+
+    public String getNacionalidade() {
+        return nacionalidade;
+    }
+
+    public void setNacionalidade(String nacionalidade) {
+        this.nacionalidade = nacionalidade;
     }
 
     public List<Personagens> getPersonagens() {
@@ -105,27 +148,21 @@ public class Filme {
     public void setPersonagens(List<Personagens> personagens) {
         this.personagens = personagens;
     }
-
-    public int getDuracao() {
-        return duracao;
-    }
-
-    public void setDuracao(int duracao) {
-        this.duracao = duracao;
-    }
-
+    @Override
     public String toString() {
-        return "Filme{" +
+        return "Anime{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", descrição='" + descricao + '\'' +
                 ", autor='" + autor + '\'' +
                 ", estudio='" + estudio + '\'' +
+                ", status='" + status + '\'' +
                 ", disponibilidade='" + disponibilidade + '\'' +
                 ", mesAno=" + mesAno + '\'' +
+                ", temps=" + temps + '\'' +
+                ", maxEps=" + maxEps + '\'' +
                 ", statusVisto='" + statusVisto + '\'' +
                 ", personagens=" + personagens + '\'' +
-                ", duracao=" + duracao + '\'' +
                 '}';
     }
 }

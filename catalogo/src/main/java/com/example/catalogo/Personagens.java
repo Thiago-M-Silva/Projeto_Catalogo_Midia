@@ -1,6 +1,6 @@
 package com.example.catalogo;
 
-import com.example.catalogo.Anime.Anime;
+import com.example.catalogo.Desenho.Desenho;
 import com.example.catalogo.Filme.Filme;
 import com.example.catalogo.Livro.Livro;
 import com.example.catalogo.Manga.Manga;
@@ -18,7 +18,7 @@ public class Personagens {
     private String nome;
     @ManyToOne
     @JoinColumn(name = "anime_id")
-    private Anime anime;
+    private Desenho desenho;
     @ManyToOne
     @JoinColumn(name = "filme_id")
     private Filme filme;
@@ -49,12 +49,12 @@ public class Personagens {
         this.nome = nome;
     }
 
-    public Anime getAnime() {
-        return anime;
+    public Desenho getAnime() {
+        return desenho;
     }
 
-    public void setAnime(Anime anime) {
-        this.anime = anime;
+    public void setAnime(Desenho desenho) {
+        this.desenho = desenho;
     }
 
     public Filme getFilme() {

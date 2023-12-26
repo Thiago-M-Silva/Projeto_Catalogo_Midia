@@ -1,48 +1,55 @@
 package com.example.catalogo.Controllers;
 
-import com.example.catalogo.Anime.AnimeRepository;
-import com.example.catalogo.Anime.AnimeRequestDTO;
-import com.example.catalogo.Anime.AnimeResponseDTO;
-import com.example.catalogo.Anime.Anime;
+import com.example.catalogo.Desenho.DesenhoRepository;
+import com.example.catalogo.Desenho.DesenhoRequestDTO;
+import com.example.catalogo.Desenho.DesenhoResponseDTO;
+import com.example.catalogo.Desenho.Desenho;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("anime")
 public class AnimeController {
 
     @Autowired
-    private AnimeRepository AnimeRep;
+    private DesenhoRepository DesenhoRep;
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
-    public List<AnimeResponseDTO> getAll(){
-        List<AnimeResponseDTO> AnimeList = AnimeRep.findAll().stream().map(AnimeResponseDTO::new).toList();
+    public List<DesenhoResponseDTO> getAll(){
+        List<DesenhoResponseDTO> AnimeList = DesenhoRep.findAll().stream().map(DesenhoResponseDTO::new).toList();
         return AnimeList;
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping
-    public void saveAnime(@RequestBody AnimeRequestDTO data){
-        Anime AnimeData = new Anime(data);
-        AnimeRep.save(AnimeData);
+    public void saveAnime(@RequestBody DesenhoRequestDTO data){
+        Desenho desenhoData = new Desenho(data);
+        DesenhoRep.save(desenhoData);
 
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @DeleteMapping("/{id}")
     public void deleteAnime(@PathVariable("id") Long id){
-        AnimeRep.deleteById(id);
+        DesenhoRep.deleteById(id);
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/{id}")
-    public void updateAnime(@PathVariable("id") Long id, @RequestBody AnimeRequestDTO data){
-        AnimeRep.deleteById(id);
-        Anime AnimeData = new Anime(data);
-        AnimeRep.save(AnimeData);
+    public void updateAnime(@PathVariable("id") Long id, @RequestBody DesenhoRequestDTO data){
+        Desenho desenho = DesenhoRep.getReferenceById(id);
+        desenho.setNome(data.nome());
+        desenho.setAutor(data.autor());
+        desenho.setDescricao(data.descricao());
+        desenho.setEstudio(data.estudio());
+        desenho.setStatus(data.status());
+        desenho.setDisponibilidade(data.disponibilidade());
+        desenho.setMaxEps(data.maxeps());
+        desenho.setStatusVisto(data.StatusVisto());
+        desenho.setNacionalidade(data.nacionalidade());
+        DesenhoRep.save(desenho);
     }
 }

@@ -1,11 +1,9 @@
 package com.example.catalogo.Controllers;
 
-import com.example.catalogo.Filme.Filme;
-import com.example.catalogo.Filme.FilmeRequestDTO;
+import com.example.catalogo.Serie.Serie;
 import com.example.catalogo.Serie.SerieRepository;
 import com.example.catalogo.Serie.SerieRequestDTO;
 import com.example.catalogo.Serie.SerieResponseDTO;
-import com.example.catalogo.Serie.Serie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,8 +39,16 @@ public class SerieController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/{id}")
     public void updateSerie(@PathVariable("id") Long id, @RequestBody SerieRequestDTO data){
-        SerieRep.deleteById(id);
-        Serie SerieData = new Serie(data);
-        SerieRep.save(SerieData);
+        Serie serie = SerieRep.getReferenceById(id);
+        serie.setAutor(data.autor());
+        serie.setDescricao(data.descricao());
+        serie.setDisponibilidade(data.disponibilidade());
+        serie.setEstudio(data.estudio());
+        serie.setNome(data.nome());
+        serie.setTemps(data.temps());
+        serie.setStatus(data.status());
+        serie.setStatusVisto(data.statusVisto());
+        serie.setMaxEps(data.maxEps());
+        SerieRep.save(serie);
     }
 }

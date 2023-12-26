@@ -37,12 +37,14 @@ public class UsuarioController {
     }
 
     //funcao de att, recebe um id via header e uma nova classe no body
-    //reconstroi o objeto ao invés de corrigir um atributo
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/{id}")
     public void updateUsuario(@PathVariable("id") Long id, @RequestBody UsuarioRequestDTO data){
-        UserRep.deleteById(id);
-        Usuario UserData = new Usuario(data);
-        UserRep.save(UserData);
+        Usuario usuario = UserRep.getReferenceById(id);
+        usuario.setNome(data.nome());
+        usuario.setTipo(data.tipo());
+        usuario.setEmail(data.email());
+        usuario.setSenha(data.senha());
+        UserRep.save(usuario);
     }
 }

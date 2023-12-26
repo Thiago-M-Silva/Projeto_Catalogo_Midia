@@ -1,5 +1,6 @@
 package com.example.catalogo.Controllers;
 
+import com.example.catalogo.Novela.Novela;
 import com.example.catalogo.Filme.Filme;
 import com.example.catalogo.Filme.FilmeRequestDTO;
 import com.example.catalogo.Novela.NovelaRepository;
@@ -41,8 +42,15 @@ public class NovelaController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/{id}")
     public void updateNovela(@PathVariable("id") Long id, @RequestBody NovelaRequestDTO data){
-        NovelaRep.deleteById(id);
-        Novela NovelaData = new Novela(data);
-        NovelaRep.save(NovelaData);
+        Novela novela = NovelaRep.getReferenceById(id);
+        novela.setNome(data.nome());
+        novela.setDescricao(data.descricao());
+        novela.setAutor(data.autor());
+        novela.setEstudio(data.estudio());
+        novela.setStatus(data.status());
+        novela.setDisponibilidade(data.disponibilidade());
+        novela.setMaxEps(data.maxEps());
+        novela.setStatusVisto(data.statusVisto());
+        NovelaRep.save(novela);
     }
 }
