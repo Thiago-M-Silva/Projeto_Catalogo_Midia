@@ -7,7 +7,7 @@ public record FilmeResponseDTO(Long id, String nome, String descricao, String au
         this(filme.getId(),
                 filme.getNome(),
                 filme.getAutor(),
-                filme.getDescrição(),
+                filme.getDescricao(),
                 filme.getDisponibilidade(),
                 filme.getEstudio(),
                 filme.getStatusVisto(),
