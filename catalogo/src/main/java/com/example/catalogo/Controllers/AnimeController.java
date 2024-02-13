@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static java.lang.Long.valueOf;
+
 @RestController
 @RequestMapping("anime")
 public class AnimeController {
@@ -18,7 +20,7 @@ public class AnimeController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
-    public List<DesenhoResponseDTO> getAll(){
+    public List<DesenhoResponseDTO> setAll(){
         List<DesenhoResponseDTO> AnimeList = DesenhoRep.findAll().stream().map(DesenhoResponseDTO::new).toList();
         return AnimeList;
     }
@@ -41,15 +43,20 @@ public class AnimeController {
     @PutMapping("/{id}")
     public void updateAnime(@PathVariable("id") Long id, @RequestBody DesenhoRequestDTO data){
         Desenho desenho = DesenhoRep.getReferenceById(id);
+        desenho.setId(data.id());
         desenho.setNome(data.nome());
         desenho.setAutor(data.autor());
         desenho.setDescricao(data.descricao());
-        desenho.setEstudio(data.estudio());
-        desenho.setStatus(data.status());
         desenho.setDisponibilidade(data.disponibilidade());
+        desenho.setEstudio(data.estudio());
         desenho.setMaxEps(data.maxeps());
-        desenho.setStatusVisto(data.StatusVisto());
+        desenho.setMesAno(data.mesAno());
         desenho.setNacionalidade(data.nacionalidade());
+        desenho.setStatus(data.status());
+        desenho.setStatusVisto(data.StatusVisto());
+        desenho.setTemps(data.temps());
         DesenhoRep.save(desenho);
     }
 }
+
+
