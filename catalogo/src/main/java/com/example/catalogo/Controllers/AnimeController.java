@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static java.lang.Long.valueOf;
-
 @RestController
 @RequestMapping("anime")
 public class AnimeController {
@@ -30,7 +28,6 @@ public class AnimeController {
     public void saveAnime(@RequestBody DesenhoRequestDTO data){
         Desenho desenhoData = new Desenho(data);
         DesenhoRep.save(desenhoData);
-
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -42,20 +39,10 @@ public class AnimeController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PutMapping("/{id}")
     public void updateAnime(@PathVariable("id") Long id, @RequestBody DesenhoRequestDTO data){
-        Desenho desenho = DesenhoRep.getReferenceById(id);
-        desenho.setId(data.id());
-        desenho.setNome(data.nome());
-        desenho.setAutor(data.autor());
-        desenho.setDescricao(data.descricao());
-        desenho.setDisponibilidade(data.disponibilidade());
-        desenho.setEstudio(data.estudio());
-        desenho.setMaxEps(data.maxeps());
-        desenho.setMesAno(data.mesAno());
-        desenho.setNacionalidade(data.nacionalidade());
-        desenho.setStatus(data.status());
-        desenho.setStatusVisto(data.StatusVisto());
-        desenho.setTemps(data.temps());
-        DesenhoRep.save(desenho);
+        Desenho desenhoData = new Desenho(data);
+
+        DesenhoRep.deleteById(id);
+        DesenhoRep.save(desenhoData);
     }
 }
 
