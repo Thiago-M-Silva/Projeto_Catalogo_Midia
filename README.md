@@ -1,5 +1,6 @@
-# Catálogo de Mídias de Entretenimento
-Projeto pessoal de um catálogo de mídias de entretenimento.  
+# CatMidas
+## Catálogo de Mídias de Entretenimento
+### Backend do CatMidas
   
-No momento é apenas um CRUD feito em Java com Spring Boot utilizando o banco de dados PostgreSQL para a persistencia de informações. Nesse projeto fiz uma api que para armazenar as informações sobre midias de entretenimento. No momento, os endpoints de criação, leitura e exclusão funcionam, sendo o endpoint de atualização possuindo o defeito de alterar o índice do elemento a ser alterado.  
-No momento o projeto não foi hospedado.
+  CatMidas é um sistema web de controle de midias de entretenimento, nele o usuário pode cadastrar, editar, visualizar ou remover midias de entretenimento que ele estiver consumindo. 
+  O sistema é feito com as tecnologias Angular, criação de UI, Java com Spring Boot e PostgreSQL, para lógica e persistencia de dados. Além disso, foram utilizadas as ferramentas Figma, para o desenho das telas, e Postman para o teste da API.
